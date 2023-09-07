@@ -1,45 +1,28 @@
 {
-	"name": "personal-site",
-	"version": "1.1.0",
-	"repository": "git@github.com:MatthewWid/mwidd.com.git",
+	"name": "mwidd.com",
+	"version": "2.0.0",
 	"license": "MIT",
 	"private": true,
-	"author": "Matthew Widdicombe",
-	"scripts": {
-		"start": "npm-run-all --parallel client server",
-		"dev": "npm-run-all --parallel client:build-dev:watch server:watch",
-		"client": "npm run client:build-prod",
-		"client:build-dev": "webpack --env.env client --env.mode dev",
-		"client:build-dev:watch": "webpack --env.env client --env.mode dev --watch",
-		"client:build-prod": "webpack --env.env client --env.mode prod",
-		"server": "npm-run-all --sequential server:build server:start",
-		"server:watch": "nodemon --exec \"npm run server\" --watch ./src/server/",
-		"server:build": "webpack --env.env server",
-		"server:start": "node ./build-server/server.node.js"
+	"repository": "github:MatthewWid/mwidd.com",
+	"engines": {
+		"node": ">=20",
+		"pnpm": ">=8"
 	},
-	"dependencies": {
-		"compression": "^1.7.4",
-		"dotenv": "^6.2.0",
-		"express": "^4.16.4",
-		"node-fetch": "^2.6.0",
-		"npm-run-all": "^4.1.5",
-		"pug": "^2.0.3"
+	"scripts": {
+		"start": "live-server ./build",
+		"build": "npm-run-all build:setup build:assets build:scripts build:styles build:views",
+		"build:setup": "mkdir ./build",
+		"build:assets": "cp -r ./src/assets ./build/assets",
+		"build:scripts": "cp -r ./src/scripts ./build/scripts",
+		"build:styles": "sass ./src/styles/index.scss ./build/styles/index.css",
+		"build:views": "pug ./src/views/index.pug --out build",
+		"clean": "rm -rf ./build"
 	},
 	"devDependencies": {
-		"css-loader": "^3.4.2",
-		"mini-css-extract-plugin": "^0.9.0",
-		"node-sass": "^4.13.1",
-		"nodemon": "^1.18.9",
-		"sass-loader": "^8.0.2",
-		"terser-webpack-plugin": "^2.3.5",
-		"webpack": "^4.41.6",
-		"webpack-cli": "^3.3.11",
-		"webpack-fix-style-only-entries": "^0.4.0",
-		"webpack-merge": "^4.2.2",
-		"webpack-node-externals": "^1.7.2"
-	},
-	"nodemonConfig": {
-		"delay": "2000",
-		"ext": "js,ts,pug"
+		"live-server": "^1.2.2",
+		"npm-run-all": "^4.1.5",
+		"pug": "^3.0.2",
+		"pug-cli": "1.0.0-alpha6",
+		"sass": "^1.66.1"
 	}
 }

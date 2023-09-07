@@ -6,7 +6,4 @@ node_modules/
 *.env.test
 
 # Generated
-.sass-cache
-public/js/
-public/css/
-build-*/
+build

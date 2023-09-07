@@ -1,0 +1,181 @@
+@use "sass:math";
+
+section.project {
+	min-height: 800px;
+	display: flex;
+
+	&:nth-of-type(odd) {
+		flex-direction: row-reverse;
+	}
+	.project-section {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.preview-image {
+			box-shadow: inset -80px 0 40px -20px $bg-white;
+			background-repeat: no-repeat;
+			background-position: center;
+			width: 100%;
+			height: 100%;
+		}
+		.info {
+			max-width: 80%;
+			color: $darkest-grey;
+
+			> .info-title,
+			> div {
+				margin-bottom: math.div($line-height, 2);
+			}
+			.info-title {
+				display: block;
+				color: inherit;
+				text-decoration: none;
+
+				h1 {
+					position: relative;
+
+					&:before {
+						content: "";
+						display: block;
+						position: absolute;
+						left: 0;
+						top: 0.7em;
+						width: 100px;
+						height: 16px;
+						z-index: -1;
+						background-color: #aaa;
+					}
+				}
+			}
+			.info-description {
+				font-size: 1.2rem;
+				line-height: $line-height;
+			}
+			.info-technology ul li {
+				display: inline-block;
+				padding: 1rem;
+
+				&:first-of-type {
+					margin-left: -1rem;
+				}
+			}
+			.info-links {
+				display: flex;
+				justify-content: space-evenly;
+				margin-top: 40px;
+
+				.info-link {
+					display: flex;
+					align-items: center;
+					color: inherit;
+					text-decoration: none;
+					font-family: "Roboto", sans-serif;
+					padding: 10px;
+					font-size: 1.2rem;
+
+					span {
+						position: relative;
+						margin-top: -2%;
+
+						&:after {
+							content: "";
+							position: absolute;
+							left: 0;
+							top: 100%;
+							width: 0%;
+							height: 1px;
+							background-color: $darkest-grey;
+							transition: width 0.1s ease-out;
+						}
+						&:hover:after {
+							width: 100%;
+						}
+					}
+					&:before {
+						content: "";
+						display: inline-block;
+						width: 24px;
+						height: 24px;
+						filter: invert(82%);
+						background-size: contain;
+						background-repeat: no-repeat;
+						margin-right: 0.4em;
+					}
+					&.repo-link:before {
+						background-image: url("/assets/images/icons/code.svg");
+					}
+					&.demo-link:before {
+						background-image: url("/assets/images/icons/globe.svg");
+					}
+					&.doc-link:before {
+						background-image: url("/assets/images/icons/document.svg");
+					}
+				}
+			}
+		}
+	}
+	&.shoutout {
+		.info .info-title h1:before {
+			background-color: #ef3a95;
+		}
+		.preview-image {
+			background-image: url("/assets/images/previews/shoutout.png");
+			background-size: 90%;
+		}
+	}
+	&.bonk-skins {
+		.info .info-title h1:before {
+			background-color: #00ccb8;
+		}
+		.preview-image {
+			background-image: url("/assets/images/previews/bonkskins-preview.png");
+			background-size: cover;
+		}
+	}
+	&.reddit-bot {
+		.info .info-title {
+			position: relative;
+
+			&:before {
+				content: "Unofficial";
+				position: absolute;
+				left: 0px;
+				bottom: 100%;
+				font-size: 0.9rem;
+			}
+			h1:before {
+				background-color: #ff4500;
+			}
+		}
+		.preview-image {
+			background-image: url("/assets/images/previews/reddit.png");
+			background-size: 18%;
+		}
+	}
+	&.strat-roulette {
+		.info {
+			max-width: 90%;
+
+			.info-title h1:before {
+				background-color: #fd9d24;
+			}
+		}
+		.preview-image {
+			background-image: url("/assets/images/previews/stratroulette-preview.jpg");
+			background-size: cover;
+			width: 100%;
+			height: 100%;
+		}
+	}
+	&.game-engine {
+		.info .info-title h1:before {
+			background-color: #00b7ff;
+		}
+		.preview-image {
+			background-image: url("/assets/images/previews/whirl.png");
+			background-size: 54%;
+		}
+	}
+}

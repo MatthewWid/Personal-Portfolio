@@ -1,0 +1,27 @@
+mixin project({title, repo, demo, doc, tech})
+	section.project(class!=attributes.class)
+		.project-section
+			.preview-image
+		.project-section
+			.info
+				if repo
+					a.info-title(href=repo title=title target="_blank"): h1= title
+				else
+					h1.info-title= title
+				if block
+					.info-description
+						block
+				else
+					.info-description
+				.info-technology
+					if tech
+						ul
+							each val in tech
+								li= val
+				.info-links
+					if repo
+						a.info-link.repo-link(href=repo title=`${title} source code` target="_blank") #[span source code]
+					if demo
+						a.info-link.demo-link(href=demo title=`${title} live demo` target="_blank") #[span live demo]
+					if doc
+						a.info-link.doc-link(href=doc title=`${title} documentation` target="_blank") #[span documentation]
